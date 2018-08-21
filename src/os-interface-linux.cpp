@@ -39,6 +39,8 @@ char *file_read(const char *fname, int &size) {
 
 bool file_write(const char *fname, const char *buffer, int size, bool append) {
   FILE *fp = fopen(fname, append ? "a" : "w");
+  if (fp == NULL)
+    return false;
   size_t written = fwrite(buffer, 1, size, fp);
   fclose(fp);
   return written == size;

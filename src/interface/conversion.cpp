@@ -107,9 +107,10 @@ string export_as_std_string(OBJ obj) {
   if (!is_empty_seq(raw_str_obj)) {
     OBJ *seq_buffer = get_seq_buffer_ptr(raw_str_obj);
     uint32 len = get_seq_length(raw_str_obj);
-    result.resize(len);
-    for (uint32 i=0 ; i < len ; i++)
-      result[i] = get_int_val(seq_buffer[i]);
+    int64 size = to_utf8(seq_buffer, len, NULL);
+    char *utf8_data = new_byte_array(size+1);
+    to_utf8(seq_buffer, len, utf8_data);
+    result = utf8_data;
   }
   return result;
 }
