@@ -7,7 +7,7 @@ using std::ostream;
 using std::ostringstream;
 
 using cell::Value;
-
+//N O I C E
 
 class ValueBase : public Value {
 public:
